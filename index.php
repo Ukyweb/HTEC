@@ -9,6 +9,6 @@
     <script src="js/main.js"></script>
 </head>
 <body>
-
+    <p id="demo"></p>
 </body>
 </html>
