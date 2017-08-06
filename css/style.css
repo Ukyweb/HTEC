@@ -1,29 +1,29 @@
+body * {
+    box-sizing: border-box;
+}
 .container {
     width: 980px;
     margin: 0 auto;
 }
 
-#demo {
+#car_list {
     list-style: none;
     padding: 0;
     margin: 0;
 }
-#demo li {
-    width: 33%;
+#car_list li {
+    width: 33.333%;
     float: left;
     padding: 15px;
-    border-left: 2px solid #ccc;
-
-    box-sizing: border-box;
 }
-#demo li:nth-child(1), #demo li:nth-child(2), #demo li:nth-child(3) {
+#car_list .borders {
+    border-right: 2px solid #ccc;
+}
+#car_list .borders:nth-of-type(3n), #car_list .borders:last-of-type {
+    border-right: none;
+}
+#car_list .border_bottom {
     border-bottom: 2px solid #ccc;
-}
-#demo li:nth-child(3n+1) {
-    border-left: none;
-}
-.cars {
-
 }
 .cars h3 {
     position: absolute;
@@ -44,4 +44,11 @@
     width: 100%;
     height: auto;
     vertical-align: middle;
+}
+#search {
+    padding: 15px;
+}
+#search input {
+    padding: 10px;
+    width: 100%;
 }

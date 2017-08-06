@@ -25,11 +25,11 @@ loadJSON(function(response) {
     //console.log(cars[0].name);
 
 
-    var ul = document.getElementById("demo");
+    var ul = document.getElementById("car_list");
     for ( var i=0; i<cars.length; i++ ) {
 
         ul.innerHTML +=
-            '<li id="'+ cars[i].id +'" class="cars">'
+            '<li id="'+ cars[i].id +'" class="cars borders">'
 
                 + '<div class="cars_body">'
 
@@ -45,4 +45,37 @@ loadJSON(function(response) {
 
     }
 
+    borderBottom();
 });
+
+function borderBottom() {
+    var ul, li, i, liLeng, liLeftOver, liRound;
+    ul = document.getElementById("car_list");
+    li = ul.getElementsByTagName("li");
+    liLeng = li.length;
+    liLeftOver = liLeng%3;
+    liRound = liLeng - liLeftOver;
+
+    for (i = 0; i < liRound; i++) {
+        li[i].classList.add("border_bottom");
+    }
+}
+
+function myFilter() {
+    var input, filter, ul, li, a, i;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("car_list");
+    li = ul.getElementsByTagName("li");
+    for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByTagName("h3")[0];
+        if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+            li[i].classList.add("borders");
+
+        } else {
+            li[i].style.display = "none";
+            li[i].classList.remove("borders");
+        }
+    }
+}

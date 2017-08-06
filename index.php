@@ -6,13 +6,16 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="css/style.css">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="js/main.js"></script>
 </head>
 <body>
     <div class="container">
 
-        <ul id="demo"></ul>
+        <div id="search">
+            <input type="text" id="myInput" onkeyup="myFilter()" placeholder="Search for names.." title="Type in a name">
+        </div>
+
+        <ul id="car_list"></ul>
 
     </div>
 </body>
