@@ -20,7 +20,29 @@ loadJSON(function(response) {
     // Do Something with the response e.g.
     var jsonresponse = JSON.parse(response);
 
-    // Assuming json data is wrapped in square brackets as Drew suggests
-    console.log(jsonresponse.cars);
+    var cars = jsonresponse.cars;
+
+    //console.log(cars[0].name);
+
+
+    var ul = document.getElementById("demo");
+    for ( var i=0; i<cars.length; i++ ) {
+
+        ul.innerHTML +=
+            '<li id="'+ cars[i].id +'" class="cars">'
+
+                + '<div class="cars_body">'
+
+                    + '<span class="helper"></span>'
+
+                    + '<h3>' + cars[i].name + '</h3>'
+
+                    + '<img src=' + cars[i].image + ' >'
+
+                + '</div>'
+
+            + '</li>';
+
+    }
 
 });

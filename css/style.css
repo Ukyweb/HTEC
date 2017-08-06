@@ -1,0 +1,47 @@
+.container {
+    width: 980px;
+    margin: 0 auto;
+}
+
+#demo {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+#demo li {
+    width: 33%;
+    float: left;
+    padding: 15px;
+    border-left: 2px solid #ccc;
+
+    box-sizing: border-box;
+}
+#demo li:nth-child(1), #demo li:nth-child(2), #demo li:nth-child(3) {
+    border-bottom: 2px solid #ccc;
+}
+#demo li:nth-child(3n+1) {
+    border-left: none;
+}
+.cars {
+
+}
+.cars h3 {
+    position: absolute;
+    top: 0;
+    left: 15px;
+}
+.cars .cars_body {
+    position: relative;
+    height: 250px;
+    border: 2px solid #ccc;
+}
+.cars .helper {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+.cars img {
+    width: 100%;
+    height: auto;
+    vertical-align: middle;
+}
