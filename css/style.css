@@ -5,24 +5,38 @@ body * {
     width: 980px;
     margin: 0 auto;
 }
-
+#search {
+    padding: 15px;
+}
+#search input {
+    padding: 10px;
+    width: 100%;
+}
 #car_list {
     list-style: none;
-    padding: 0;
+    padding: 0 15px;
     margin: 0;
 }
 #car_list li {
     width: 33.333%;
     float: left;
-    padding: 15px;
+    padding: 15px 15px 0;
 }
 #car_list .borders {
     border-right: 2px solid #ccc;
+}
+#car_list .borders:nth-of-type(3n+1) {
+    padding-left: 0;
+}
+#car_list .borders:nth-of-type(3n) {
+    padding-right: 0;
 }
 #car_list .borders:nth-of-type(3n), #car_list .borders:last-of-type {
     border-right: none;
 }
 #car_list .border_bottom {
+    padding-top: 0;
+    padding-bottom: 15px;
     border-bottom: 2px solid #ccc;
 }
 .cars h3 {
@@ -35,6 +49,9 @@ body * {
     height: 250px;
     border: 2px solid #ccc;
 }
+.borderRed .cars_body, .borderRed .cars_back {
+    border-color: red !important;
+}
 .cars .helper {
     display: inline-block;
     height: 100%;
@@ -45,10 +62,59 @@ body * {
     height: auto;
     vertical-align: middle;
 }
-#search {
-    padding: 15px;
+
+/* flip */
+#car_list {
+    perspective: 1000px;
 }
-#search input {
+#car_list .cars .flipper:hover, #car_list .cars .flipper.hover {
+    transform: rotateY(180deg);
+}
+.cars .flipper {
+    transition: 0.6s;
+    transform-style: preserve-3d;
+
+    position: relative;
+}
+.cars_body, .cars_back {
+    backface-visibility: hidden;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.cars_body {
+    z-index: 2;
+    /* for firefox 31 */
+    transform: rotateY(0deg);
+}
+.cars_back {
+    transform: rotateY(180deg);
+    height: 100%;
+}
+.cars:hover .cars_body {
+    position: absolute;
+}
+.cars:hover .cars_back {
+    position: relative;
+    height: 250px;
+    border: 2px solid #ccc;
+}
+.cars_info {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    background: rgba(0, 0, 0, 0.6);
+}
+.cars_info * {
     padding: 10px;
-    width: 100%;
+    margin: 0;
+    color: #fff;
+}
+.cars_info span {
+    display: block;
+    margin-top: 50px;
 }

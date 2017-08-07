@@ -29,15 +29,33 @@ loadJSON(function(response) {
     for ( var i=0; i<cars.length; i++ ) {
 
         ul.innerHTML +=
-            '<li id="'+ cars[i].id +'" class="cars borders">'
+            '<li id="'+ cars[i].id +'" class="cars borders" onclick="chooseCars(this)" value="0">'
 
-                + '<div class="cars_body">'
+                + '<div class="flipper">'
 
-                    + '<span class="helper"></span>'
+                    + '<div class="cars_body">'
 
-                    + '<h3>' + cars[i].name + '</h3>'
+                        + '<span class="helper"></span>'
+                        + '<img src=' + cars[i].image + ' >'
 
-                    + '<img src=' + cars[i].image + ' >'
+                        + '<h3>' + cars[i].name + '</h3>'
+
+                    + '</div>'
+
+                    + '<div class="cars_back">'
+
+                        + '<span class="helper"></span>'
+                        + '<img src=' + cars[i].image + ' >'
+
+                        + '<div class="cars_info">'
+
+                            + '<span>Speed:' + cars[i].speed + '</span>'
+
+                            + '<p>' + cars[i].description + '</p>'
+
+                        + '</div>'
+
+                    + '</div>'
 
                 + '</div>'
 
@@ -76,6 +94,45 @@ function myFilter() {
         } else {
             li[i].style.display = "none";
             li[i].classList.remove("borders");
+        }
+    }
+}
+var car1, car2, car3;
+function chooseCars(obj) {
+    var value, id;
+    value = obj.value;
+    id = obj.id;
+
+    if (value==1) {
+        obj.setAttribute("value", "0");
+        obj.classList.remove("borderRed");
+        car3 = undefined;
+    } else if (value==2) {
+        obj.setAttribute("value", "0");
+        obj.classList.remove("borderRed");
+        car2 = undefined;
+    } else if (value==1) {
+        obj.setAttribute("value", "0");
+        obj.classList.remove("borderRed");
+        car3 = undefined;
+
+    } else if (car1 !== undefined && car2 !== undefined && car3 !== undefined) {
+        alert("max number of cars is selected")
+
+    } else {
+
+        if (car1 == undefined && value==0) {
+            obj.setAttribute("value", "1");
+            obj.classList.add("borderRed");
+            car1 = id;
+        } else if ( car1 !== undefined && car2 == undefined && value==0) {
+            obj.setAttribute("value", "2");
+            obj.classList.add("borderRed");
+            car2 = id;
+        } else if ( car1 !== undefined && car2 !== undefined && value==0) {
+            obj.setAttribute("value", "3");
+            obj.classList.add("borderRed");
+            car3 = id;
         }
     }
 }
