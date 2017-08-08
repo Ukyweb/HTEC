@@ -20,6 +20,7 @@
 
         <div id="race">
             <div id="race_markers"></div>
+            <div id="race_events"></div>
             <div id="race_track" class="borderR">
                 <div id="track1" class="tracks">
                     <div id="car1" class="borderR track_cars"></div>

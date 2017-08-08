@@ -139,12 +139,15 @@ function chooseCars(obj) {
 }
 
 function raceTrack(jsonresponse) {
-    var raceT, raceM, raceTrackL, trackDistance, i, n1, n10;
+    var raceT, raceM, raceE, raceTrackL, trackDistance, speedLimits, speedLimitsPos, i, p, n1, n10;
     raceT = document.getElementById("race_track");
     raceM = document.getElementById("race_markers");
+    raceE = document.getElementById("race_events");
     raceTrackL = raceT.offsetWidth;
 
     trackDistance = jsonresponse.distance;
+    speedLimits = jsonresponse.speed_limits;
+
     // Track Nth - units n1=1km=px
     n1 = raceTrackL/trackDistance;
     n10 = trackDistance/10;
@@ -155,6 +158,15 @@ function raceTrack(jsonresponse) {
                 + '<p>' + n10*i +'km' + '</p>'
                 + '<span></span>'
             +'</div>';
+    }
+
+    for ( p = 0; p < speedLimits.length; p++) {
+        speedLimitsPos = speedLimits[p].position;
+        raceE.innerHTML +=
+            '<div class="speed_limit" style="left: ' + n1*speedLimitsPos + 'px">'
+                + '<span></span>'
+                + '<p>' + speedLimits[p].speed + '</p>'
+            + '</div>';
     }
     //console.log(trackDistance, n1);
 }
