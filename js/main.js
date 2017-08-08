@@ -33,7 +33,7 @@ loadJSON(function(response) {
 
                 + '<div class="flipper">'
 
-                    + '<div class="cars_body">'
+                    + '<div class="cars_body borderR">'
 
                         + '<span class="helper"></span>'
                         + '<img src=' + cars[i].image + ' >'
@@ -42,7 +42,7 @@ loadJSON(function(response) {
 
                     + '</div>'
 
-                    + '<div class="cars_back">'
+                    + '<div class="cars_back borderR">'
 
                         + '<span class="helper"></span>'
                         + '<img src=' + cars[i].image + ' >'
@@ -64,6 +64,7 @@ loadJSON(function(response) {
     }
 
     borderBottom();
+    raceTrack();
 });
 
 function borderBottom() {
@@ -135,4 +136,12 @@ function chooseCars(obj) {
             car3 = id;
         }
     }
+}
+
+function raceTrack() {
+    var raceTrackL;
+    raceTrackL = document.getElementById("race_track").offsetWidth;
+
+
+    console.log(raceTrackL);
 }

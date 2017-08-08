@@ -4,9 +4,15 @@ body * {
 .container {
     width: 980px;
     margin: 0 auto;
+    padding: 0 15px;
+}
+.borderR {
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
 }
 #search {
-    padding: 15px;
+    padding: 15px 0;
 }
 #search input {
     padding: 10px;
@@ -14,8 +20,11 @@ body * {
 }
 #car_list {
     list-style: none;
-    padding: 0 15px;
+    padding: 0;
     margin: 0;
+    overflow: hidden;
+
+    margin-bottom: 50px;
 }
 #car_list li {
     width: 33.333%;
@@ -99,6 +108,7 @@ body * {
     position: relative;
     height: 250px;
     border: 2px solid #ccc;
+    overflow: hidden;
 }
 .cars_info {
     position: absolute;
@@ -117,4 +127,24 @@ body * {
 .cars_info span {
     display: block;
     margin-top: 50px;
+}
+
+/* Race track */
+#race_track {
+    overflow: hidden;
+    border: 2px solid #ccc;
+}
+.tracks {
+    height: 50px;
+    padding: 5px 0;
+    background-color: #333;
+    border-bottom: 2px solid #fff;
+}
+.tracks:last-child {
+    border-bottom: none;
+}
+.track_cars {
+    border: 2px solid #ccc;
+    width: 70px;
+    height: 100%;
 }
