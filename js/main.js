@@ -64,7 +64,7 @@ loadJSON(function(response) {
     }
 
     borderBottom();
-    raceTrack();
+    raceTrack(jsonresponse);
 });
 
 function borderBottom() {
@@ -138,10 +138,23 @@ function chooseCars(obj) {
     }
 }
 
-function raceTrack() {
-    var raceTrackL;
-    raceTrackL = document.getElementById("race_track").offsetWidth;
+function raceTrack(jsonresponse) {
+    var raceT, raceM, raceTrackL, trackDistance, i, n1, n10;
+    raceT = document.getElementById("race_track");
+    raceM = document.getElementById("race_markers");
+    raceTrackL = raceT.offsetWidth;
 
+    trackDistance = jsonresponse.distance;
+    // Track Nth - units n1=1km=px
+    n1 = raceTrackL/trackDistance;
+    n10 = trackDistance/10;
 
-    console.log(raceTrackL);
+    for ( i = 1; i < 10; i++) {
+        raceM.innerHTML +=
+            '<div class="distMarker" style="left: ' + n1*n10*i + 'px">'
+                + '<p>' + n10*i +'km' + '</p>'
+                + '<span></span>'
+            +'</div>';
+    }
+    //console.log(trackDistance, n1);
 }
