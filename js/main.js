@@ -100,22 +100,31 @@ function myFilter() {
 }
 var car1, car2, car3;
 function chooseCars(obj) {
-    var value, id;
+    var value, id, divCar1, divCar2, divCar3, url;
     value = obj.value;
     id = obj.id;
+    url = obj.getElementsByTagName("img");
+    url = url[0].src;
+    //console.log(url);
+    divCar1 = document.getElementById("car1");
+    divCar2 = document.getElementById("car2");
+    divCar3 = document.getElementById("car3");
 
     if (value==1) {
         obj.setAttribute("value", "0");
         obj.classList.remove("borderRed");
-        car3 = undefined;
+        car1 = undefined;
+        divCar1.style.backgroundImage = ('');
     } else if (value==2) {
         obj.setAttribute("value", "0");
         obj.classList.remove("borderRed");
         car2 = undefined;
-    } else if (value==1) {
+        divCar2.style.backgroundImage = ('');
+    } else if (value==3) {
         obj.setAttribute("value", "0");
         obj.classList.remove("borderRed");
         car3 = undefined;
+        divCar3.style.backgroundImage = ('');
 
     } else if (car1 !== undefined && car2 !== undefined && car3 !== undefined) {
         alert("max number of cars is selected")
@@ -126,14 +135,17 @@ function chooseCars(obj) {
             obj.setAttribute("value", "1");
             obj.classList.add("borderRed");
             car1 = id;
+            divCar1.style.backgroundImage = ('url(' + url +')');
         } else if ( car1 !== undefined && car2 == undefined && value==0) {
             obj.setAttribute("value", "2");
             obj.classList.add("borderRed");
             car2 = id;
+            divCar2.style.backgroundImage = ('url(' + url +')');
         } else if ( car1 !== undefined && car2 !== undefined && value==0) {
             obj.setAttribute("value", "3");
             obj.classList.add("borderRed");
             car3 = id;
+            divCar3.style.backgroundImage = ('url(' + url +')');
         }
     }
 }

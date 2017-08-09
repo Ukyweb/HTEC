@@ -11,6 +11,15 @@ body * {
     -moz-border-radius: 10px;
     border-radius: 10px;
 }
+.flip-it {
+    -moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    -ms-transform: scaleX(-1);
+    transform: scaleX(-1);
+    -ms-filter: "FlipH";
+    filter: FlipH;
+}
 #search {
     padding: 15px 0;
 }
@@ -152,6 +161,9 @@ body * {
     border: 2px solid #ccc;
     width: 70px;
     height: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 #race_markers {
     position: absolute;

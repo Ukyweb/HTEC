@@ -23,13 +23,13 @@
             <div id="race_events"></div>
             <div id="race_track" class="borderR">
                 <div id="track1" class="tracks">
-                    <div id="car1" class="borderR track_cars"></div>
+                    <div id="car1" class="borderR track_cars flip-it"></div>
                 </div>
                 <div id="track2" class="tracks">
-                    <div id="car2" class="borderR track_cars"></div>
+                    <div id="car2" class="borderR track_cars flip-it"></div>
                 </div>
                 <div id="track3" class="tracks">
-                    <div id="car3" class="borderR track_cars"></div>
+                    <div id="car3" class="borderR track_cars flip-it"></div>
                 </div>
             </div>
         </div>
