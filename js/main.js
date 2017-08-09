@@ -139,7 +139,7 @@ function chooseCars(obj) {
 }
 
 function raceTrack(jsonresponse) {
-    var raceT, raceM, raceE, raceTrackL, trackDistance, speedLimits, speedLimitsPos, i, p, n1, n10;
+    var raceT, raceM, raceE, raceTrackL, trackDistance, speedLimits, trafficLight, speedLimitsPos, trafficLightPos, trafficLightId, trLight, trTime, i, p, k, n1, n10;
     raceT = document.getElementById("race_track");
     raceM = document.getElementById("race_markers");
     raceE = document.getElementById("race_events");
@@ -147,6 +147,7 @@ function raceTrack(jsonresponse) {
 
     trackDistance = jsonresponse.distance;
     speedLimits = jsonresponse.speed_limits;
+    trafficLight = jsonresponse.traffic_lights;
 
     // Track Nth - units n1=1km=px
     n1 = raceTrackL/trackDistance;
@@ -168,5 +169,31 @@ function raceTrack(jsonresponse) {
                 + '<p>' + speedLimits[p].speed + '</p>'
             + '</div>';
     }
-    //console.log(trackDistance, n1);
+
+    for ( k = 0; k < trafficLight.length; k++) {
+        trafficLightPos = trafficLight[k].position;
+        trafficLightId = "trLight" + k;
+        raceE.innerHTML +=
+            '<div id="' + trafficLightId + '" class="traffic_light" style="left: ' + n1*trafficLightPos + 'px">'
+                + '<span></span>'
+                + '<div class="borderR">'
+                    + '<span></span>'
+                    + '<span></span>'
+                + '</div>'
+            + '</div>';
+
+        trLight = document.getElementById(trafficLightId);
+        trTime = trafficLight[k].duration;
+
+        var x;
+        setInterval(function () {
+            if (x == undefined) {
+                trLight.classList.add("green");
+                x = 1;
+            } else if (x == 1) {
+                trLight.classList.remove("green");
+                x = undefined;
+            }
+        }, trTime);
+    }
 }

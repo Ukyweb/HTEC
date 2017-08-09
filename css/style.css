@@ -211,3 +211,50 @@ body * {
     -moz-border-radius: 50%;
     border-radius: 50%;
 }
+.traffic_light {
+    top: 0;
+    height: 150px;
+    position: absolute;
+
+    z-index: 14;
+}
+.traffic_light div {
+    position: absolute;
+    height: 70px;
+    width: 40px;
+    padding: 8px;
+
+    bottom: -80px;
+    margin-left: -20px;
+
+    border: 2px solid #666;
+}
+.traffic_light > span {
+    display: block;
+    width: 1px;
+    height: 100%;
+    border-left: 4px dashed #ccc;
+    margin-left: -2px;
+    opacity: 0.5;
+}
+.traffic_light > div > span {
+    display: block;
+    width: 20px;
+    height: 20px;
+
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+
+    background: #ccc;
+}
+.traffic_light > div > span:first-child {
+    background: red;
+    margin-bottom: 10px;
+}
+.traffic_light.green > div > span:first-child {
+    background: #ccc;
+}
+.traffic_light.green > div > span:last-child {
+    background: green;
+}
