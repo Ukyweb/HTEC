@@ -14,13 +14,13 @@ function loadJSON(callback) {
     xobj.send(null);
 
 }
-
+var cars;
 // Call to function with anonymous callback
 loadJSON(function(response) {
     // Do Something with the response e.g.
     var jsonresponse = JSON.parse(response);
 
-    var cars = jsonresponse.cars;
+    cars = jsonresponse.cars;
 
     //console.log(cars[0].name);
 
@@ -31,27 +31,31 @@ loadJSON(function(response) {
         ul.innerHTML +=
             '<li id="'+ cars[i].id +'" class="cars borders" onclick="chooseCars(this)" value="0">'
 
-                + '<div class="flipper">'
+                + '<div class="flip_container">'
 
-                    + '<div class="cars_body borderR">'
+                    + '<div class="flipper">'
 
-                        + '<span class="helper"></span>'
-                        + '<img src=' + cars[i].image + ' >'
+                        + '<div class="cars_body borderR">'
 
-                        + '<h3>' + cars[i].name + '</h3>'
+                            + '<span class="helper"></span>'
+                            + '<img src=' + cars[i].image + ' >'
 
-                    + '</div>'
+                            + '<h3>' + cars[i].name + '</h3>'
 
-                    + '<div class="cars_back borderR">'
+                        + '</div>'
 
-                        + '<span class="helper"></span>'
-                        + '<img src=' + cars[i].image + ' >'
+                        + '<div class="cars_back borderR">'
 
-                        + '<div class="cars_info">'
+                            + '<span class="helper"></span>'
+                            + '<img src=' + cars[i].image + ' >'
 
-                            + '<span>Speed:' + cars[i].speed + '</span>'
+                            + '<div class="cars_info" value="' + cars[i].speed + '">'
 
-                            + '<p>' + cars[i].description + '</p>'
+                                + '<span>Speed:' + cars[i].speed + '</span>'
+
+                                + '<p>' + cars[i].description + '</p>'
+
+                            + '</div>'
 
                         + '</div>'
 
@@ -98,33 +102,41 @@ function myFilter() {
         }
     }
 }
-var car1, car2, car3;
+var car1, car2, car3, car1Speed, car2Speed, car3Speed;
 function chooseCars(obj) {
-    var value, id, divCar1, divCar2, divCar3, url;
+    var value, id, divCar1, divCar2, divCar3, divCar1div, divCar2div, divCar3div, url, info;
     value = obj.value;
     id = obj.id;
     url = obj.getElementsByTagName("img");
     url = url[0].src;
-    //console.log(url);
+    info = obj.getElementsByClassName("cars_info");
+    info = info[0].getAttribute("value");
+    //console.log(info);
     divCar1 = document.getElementById("car1");
+    divCar1div = divCar1.getElementsByTagName('div');
     divCar2 = document.getElementById("car2");
+    divCar2div = divCar2.getElementsByTagName('div');
     divCar3 = document.getElementById("car3");
+    divCar3div = divCar3.getElementsByTagName('div');
 
     if (value==1) {
         obj.setAttribute("value", "0");
         obj.classList.remove("borderRed");
         car1 = undefined;
-        divCar1.style.backgroundImage = ('');
+        divCar1div[0].style.backgroundImage = ('');
+        car1Speed = undefined;
     } else if (value==2) {
         obj.setAttribute("value", "0");
         obj.classList.remove("borderRed");
         car2 = undefined;
-        divCar2.style.backgroundImage = ('');
+        divCar2div[0].style.backgroundImage = ('');
+        car2Speed = undefined;
     } else if (value==3) {
         obj.setAttribute("value", "0");
         obj.classList.remove("borderRed");
         car3 = undefined;
-        divCar3.style.backgroundImage = ('');
+        divCar3div[0].style.backgroundImage = ('');
+        car3Speed = undefined;
 
     } else if (car1 !== undefined && car2 !== undefined && car3 !== undefined) {
         alert("max number of cars is selected")
@@ -135,23 +147,27 @@ function chooseCars(obj) {
             obj.setAttribute("value", "1");
             obj.classList.add("borderRed");
             car1 = id;
-            divCar1.style.backgroundImage = ('url(' + url +')');
+            divCar1div[0].style.backgroundImage = ('url(' + url +')');
+            car1Speed = info;
+            //console.log(car1Speed);
         } else if ( car1 !== undefined && car2 == undefined && value==0) {
             obj.setAttribute("value", "2");
             obj.classList.add("borderRed");
             car2 = id;
-            divCar2.style.backgroundImage = ('url(' + url +')');
+            divCar2div[0].style.backgroundImage = ('url(' + url +')');
+            car2Speed = info;
         } else if ( car1 !== undefined && car2 !== undefined && value==0) {
             obj.setAttribute("value", "3");
             obj.classList.add("borderRed");
             car3 = id;
-            divCar3.style.backgroundImage = ('url(' + url +')');
+            divCar3div[0].style.backgroundImage = ('url(' + url +')');
+            car3Speed = info;
         }
     }
 }
-
+var raceT, raceTrackL;
 function raceTrack(jsonresponse) {
-    var raceT, raceM, raceE, raceTrackL, trackDistance, speedLimits, trafficLight, speedLimitsPos, trafficLightPos, trafficLightId, trLight, trTime, i, p, k, n1, n10;
+    var raceM, raceE, trackDistance, speedLimits, trafficLight, speedLimitsPos, trafficLightPos, trafficLightId, trLight, trTime, i, p, k, n1, n10;
     raceT = document.getElementById("race_track");
     raceM = document.getElementById("race_markers");
     raceE = document.getElementById("race_events");
@@ -207,5 +223,34 @@ function raceTrack(jsonresponse) {
                 x = undefined;
             }
         }, trTime);
+    }
+}
+function carRace() {
+    var raceCars, carLength, raceLength, left, c;
+
+    raceCars = raceT.getElementsByClassName("track_cars");
+    carLength = document.getElementById("car1").offsetWidth;
+    raceLength = raceTrackL - carLength - 4; // 4 is for borders
+    left = 'left: ' + raceLength +'px';
+
+    if (car1 !== undefined && car2 !== undefined && car3 !== undefined) {
+
+        for (c = 0; c < raceCars.length; c++) {
+            raceCars[c].setAttribute("style", left);
+        }
+
+
+        var places = [
+            { name: 'car1', value: car1Speed },
+            { name: 'car2', value: car2Speed },
+            { name: 'car3', value: car3Speed }
+        ];
+        places.sort(function (a, b) {
+            return b.value - a.value;
+        });
+        document.getElementById(places[0].name).classList.add("gold");
+        document.getElementById(places[1].name).classList.add("silver");
+        document.getElementById(places[2].name).classList.add("bronze");
+
     }
 }

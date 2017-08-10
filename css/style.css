@@ -1,6 +1,13 @@
 body * {
     box-sizing: border-box;
 }
+.clearfix:after {
+    content: " "; /* Older browser do not support empty content */
+    visibility: hidden;
+    display: block;
+    height: 0;
+    clear: both;
+}
 .container {
     width: 980px;
     margin: 0 auto;
@@ -32,7 +39,6 @@ body * {
     list-style: none;
     padding: 0;
     margin: 0;
-    overflow: hidden;
 
     margin-bottom: 50px;
 }
@@ -86,7 +92,7 @@ body * {
 #car_list {
     perspective: 1000px;
 }
-#car_list .cars .flipper:hover, #car_list .cars .flipper.hover {
+#car_list .cars .flip_container:hover .flipper {
     transform: rotateY(180deg);
 }
 .cars .flipper {
@@ -163,9 +169,24 @@ body * {
     border: 2px solid #ccc;
     width: 70px;
     height: 100%;
+
+    position: relative;
+    left: 0;
+}
+.track_cars div {
+    height: 100%;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
+}
+.track_cars.gold {
+    border-color: gold;
+}
+.track_cars.silver {
+    border-color: silver;
+}
+.track_cars.bronze {
+    border-color: #cd7f32;
 }
 #race_markers {
     position: absolute;
