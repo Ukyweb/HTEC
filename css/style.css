@@ -142,6 +142,8 @@ body * {
 /* Race track */
 #race {
     padding-top: 20px;
+    padding-bottom: 80px;
+    margin-bottom: 10px;
 }
 #race_track {
     position: relative;
@@ -269,4 +271,31 @@ body * {
 }
 .traffic_light.green > div > span:last-child {
     background: green;
+}
+#race_inputs {
+    overflow: hidden;
+    margin-bottom: 50px;
+}
+#race_inputs > * {
+    float: right;
+    width: 130px;
+    height: 30px;
+    padding: 5px;
+    margin-left: 15px;
+    border: 1px solid #666;
+}
+#race_inputs > *:focus, #race_inputs > *:active {
+    outline: none;
+}
+#race_inputs input:hover {
+    border-color: #999;
+}
+#race_inputs button {
+    font-weight: bold;
+    text-transform: uppercase;
+    background-color: #ccc;
+}
+#race_inputs button:hover {
+    color: #fff;
+    background-color: #666;
 }

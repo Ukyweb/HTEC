@@ -33,6 +33,10 @@
                 </div>
             </div>
         </div>
+        <div id="race_inputs">
+            <button class="borderR">Start</button>
+            <input class="borderR" type="number" placeholder="Brzina animacije">
+        </div>
 
     </div>
 </body>
