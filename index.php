@@ -40,8 +40,8 @@
             </div>
         </div>
         <div id="race_inputs">
-            <button class="borderR" onclick="carRace()">Start</button>
-            <input class="borderR" type="number" placeholder="Brzina animacije">
+            <button id="race_start" class="borderR" onclick="carRace()">Start</button>
+            <input id="animation_speed" class="borderR" type="number" placeholder="Brzina animacije">
         </div>
 
     </div>

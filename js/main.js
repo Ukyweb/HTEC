@@ -102,9 +102,9 @@ function myFilter() {
         }
     }
 }
-var car1, car2, car3, car1Speed, car2Speed, car3Speed;
+var car1, car2, car3, divCar1, divCar2, divCar3, car1Speed, car2Speed, car3Speed;
 function chooseCars(obj) {
-    var value, id, divCar1, divCar2, divCar3, divCar1div, divCar2div, divCar3div, url, info;
+    var value, id, divCar1div, divCar2div, divCar3div, url, info;
     value = obj.value;
     id = obj.id;
     url = obj.getElementsByTagName("img");
@@ -226,21 +226,33 @@ function raceTrack(jsonresponse) {
     }
 }
 function carRace() {
-    var raceCars, carLength, raceLength, left, c;
+    var carLength, raceLength, left1, left2, left3, speed, speed1, speed2, speed3, places, slowest, animation;
 
-    raceCars = raceT.getElementsByClassName("track_cars");
     carLength = document.getElementById("car1").offsetWidth;
     raceLength = raceTrackL - carLength - 4; // 4 is for borders
-    left = 'left: ' + raceLength +'px';
+
+    animation = document.getElementById("animation_speed").value;
+
+    if (animation == 0) {
+        animation = 1;
+    }
+
+    document.getElementById("race_start").disabled = true;
 
     if (car1 !== undefined && car2 !== undefined && car3 !== undefined) {
 
-        for (c = 0; c < raceCars.length; c++) {
-            raceCars[c].setAttribute("style", left);
-        }
+        speed1 = car1Speed/100;
+        speed2 = car2Speed/100;
+        speed3 = car3Speed/100;
+
+        speed = 10 / animation;
+
+        left1 = 0;
+        left2 = 0;
+        left3 = 0;
 
 
-        var places = [
+        places = [
             { name: 'car1', value: car1Speed },
             { name: 'car2', value: car2Speed },
             { name: 'car3', value: car3Speed }
@@ -248,9 +260,48 @@ function carRace() {
         places.sort(function (a, b) {
             return b.value - a.value;
         });
-        document.getElementById(places[0].name).classList.add("gold");
-        document.getElementById(places[1].name).classList.add("silver");
-        document.getElementById(places[2].name).classList.add("bronze");
 
+        slowest = places[2].name;
+
+        function medals(carName) {
+            if (slowest == carName) {
+                document.getElementById(places[0].name).classList.add("gold");
+                document.getElementById(places[1].name).classList.add("silver");
+                document.getElementById(places[2].name).classList.add("bronze");
+
+                document.getElementById("race_start").disabled = false;
+            }
+        }
+
+        var travel1 = setInterval(move1, speed);
+        function move1() {
+            if (left1 >= raceLength) {
+                clearInterval(travel1);
+                medals("car1");
+            } else {
+                left1 += speed1;
+                divCar1.style.left = left1 + 'px';
+            }
+        }
+        var travel2 = setInterval(move2, speed);
+        function move2() {
+            if (left2 >= raceLength) {
+                clearInterval(travel2);
+                medals("car2");
+            } else {
+                left2 += speed2;
+                divCar2.style.left = left2 + 'px';
+            }
+        }
+        var travel3 = setInterval(move3, speed);
+        function move3() {
+            if (left3 >= raceLength) {
+                clearInterval(travel3);
+                medals("car3");
+            } else {
+                left3 += speed3;
+                divCar3.style.left = left3 + 'px';
+            }
+        }
     }
 }
