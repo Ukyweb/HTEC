@@ -1,6 +1,9 @@
 body * {
     box-sizing: border-box;
 }
+input:focus, input:active, button:focus, button:active, a:focus, a:active {
+    outline: none;
+}
 .clearfix:after {
     content: " "; /* Older browser do not support empty content */
     visibility: hidden;
@@ -63,6 +66,10 @@ body * {
     padding-top: 0;
     padding-bottom: 15px;
     border-bottom: 2px solid #ccc;
+}
+#car_list .searched {
+    padding: 15px !important;
+    border: none;
 }
 .cars h3 {
     position: absolute;
@@ -304,9 +311,6 @@ body * {
     padding: 5px;
     margin-left: 15px;
     border: 1px solid #666;
-}
-#race_inputs > *:focus, #race_inputs > *:active {
-    outline: none;
 }
 #race_inputs input:hover {
     border-color: #999;

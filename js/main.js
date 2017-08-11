@@ -85,8 +85,10 @@ function borderBottom() {
 }
 
 function myFilter() {
-    var input, filter, ul, li, a, i;
+    var input, inputV, filter, ul, li, a, i;
     input = document.getElementById("myInput");
+    inputV = input.value;
+    console.log(inputV);
     filter = input.value.toUpperCase();
     ul = document.getElementById("car_list");
     li = ul.getElementsByTagName("li");
@@ -94,11 +96,14 @@ function myFilter() {
         a = li[i].getElementsByTagName("h3")[0];
         if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
             li[i].style.display = "";
-            li[i].classList.add("borders");
+            li[i].classList.add("searched");
 
         } else {
             li[i].style.display = "none";
-            li[i].classList.remove("borders");
+            li[i].classList.remove("searched");
+        }
+        if (input.value == '') {
+            li[i].classList.remove("searched");
         }
     }
 }
