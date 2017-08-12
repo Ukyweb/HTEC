@@ -255,9 +255,10 @@ function carRace() {
         animation = 1;
     }
 
-    document.getElementById("race_start").disabled = true;
 
     if (car1 !== undefined && car2 !== undefined && car3 !== undefined) {
+
+        document.getElementById("race_start").disabled = true;
 
         speed1 = car1Speed/100;
         speed2 = car2Speed/100;
